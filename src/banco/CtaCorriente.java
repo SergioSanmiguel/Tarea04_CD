@@ -1,90 +1,65 @@
 package banco;
 
-public class CtaCorriente {
-    private String nombre;
-    private String cuenta;
-    private double saldocuenta;
-    private double interes;
+import banco.CtaCorriente;
 
-    public CtaCorriente()
-    {
-    }
-    public CtaCorriente(String nombre, String cuenta, double saldo, double interes)
-    {
-        this.nombre = nombre;
-        this.cuenta = cuenta;
-        this.saldocuenta = saldo;
-        this.interes = interes;
-    }
-    public void ingresar(double cantidad) throws Exception
-    {
-        if (cantidad<0)
-            throw new Exception("No se puede ingresar una cantidad negativa");
-        setSaldocuenta(getSaldocuenta() + cantidad);
-    }
+public class Main {
 
-    public void retirar(double cantidad) throws Exception
-    {
-        if (cantidad <= 0)
-            throw new Exception ("No se puede retirar una cantidad negativa");
-        if (estado()< cantidad)
-            throw new Exception ("No se hay suficiente saldo");
-        setSaldocuenta(getSaldocuenta() - cantidad);
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
-     * @return the cuenta
-     */
-    public String getCuenta() {
-        return cuenta;
-    }
-
-    /**
-     * @param cuenta the cuenta to set
-     */
-    public void setCuenta(String cuenta) {
-        this.cuenta = cuenta;
-    }
-
-    /**
-     * @return the saldocuenta
-     */
-    public double getSaldocuenta() {
-        return saldocuenta;
-    }
-
-    /**
-     * @param saldocuenta the saldocuenta to set
-     */
-    public void setSaldocuenta(double saldocuenta) {
-        this.saldocuenta = saldocuenta;
-    }
-
-    /**
-     * @return the interes
-     */
-    public double getInteres() {
-        return interes;
-    }
-
-    /**
-     * @param interes the interes to set
-     */
-    public void setInteres(double interes) {
-        this.interes = interes;
+    public static void main(String[] args) {
+        CtaCorriente miCuenta = new CtaCorriente("Koldo García Ábalos", "0001-2345-07-1234567890", 5000, 0);
+        miCuenta.operativa_cuenta();
     }
 }
+package banco;
+
+import java.util.Scanner;
+
+public class CtaCorriente {
+    private double saldo;
+    private String titular;
+    private String numeroCuenta;
+
+    public CtaCorriente(String titular, String numeroCuenta, double saldoInicial, double interes) {
+        this.titular = titular;
+        this.numeroCuenta = numeroCuenta;
+        this.saldo = saldoInicial;
+    }
+
+    public void operativa_cuenta() {
+        double saldoActual = estado();
+        System.out.println("El saldo inicial es de " + saldoActual + " euros");
+
+        try {
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("¿Cuánto desea retirar?");
+            double importe = entrada.nextDouble();
+            retirar(importe);
+            System.out.println("El saldo actual de su cuenta es " + estado() + " euros");
+        } catch (Exception e) {
+            System.out.print("Fallo al retirar");
+        }
+        try {
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("¿Cuánto desea ingresar en su cuenta?");
+            double importe = entrada.nextDouble();
+            ingresar(importe);
+            System.out.println("El saldo actual de su cuenta es " + estado() + " euros");
+        } catch (Exception e) {
+            System.out.print("Fallo al ingresar");
+        }
+    }
+
+    public double estado() {
+        return saldo;
+    }
+
+    public void retirar(double cantidad) {
+        saldo -= cantidad;
+    }
+
+    public void ingresar(double cantidad) {
+        saldo += cantidad;
+    }
+}
+
+
+ 
