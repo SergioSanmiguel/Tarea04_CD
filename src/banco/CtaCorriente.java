@@ -1,10 +1,10 @@
 package banco;
 
 public class CtaCorriente {
-    public String nombre;
-    public String cuenta;
-    public double saldocuenta;
-    public double interes;
+    private String nombre;
+    private String cuenta;
+    private double saldocuenta;
+    private double interes;
 
     public CtaCorriente()
     {
@@ -18,13 +18,13 @@ public class CtaCorriente {
     }
     public double estado()
     {
-        return saldocuenta;
+        return getSaldocuenta();
     }
     public void ingresar(double cantidad) throws Exception
     {
         if (cantidad<0)
             throw new Exception("No se puede ingresar una cantidad negativa");
-        saldocuenta = saldocuenta + cantidad;
+        setSaldocuenta(getSaldocuenta() + cantidad);
     }
 
     public void retirar(double cantidad) throws Exception
@@ -33,6 +33,62 @@ public class CtaCorriente {
             throw new Exception ("No se puede retirar una cantidad negativa");
         if (estado()< cantidad)
             throw new Exception ("No se hay suficiente saldo");
-        saldocuenta = saldocuenta - cantidad;
+        setSaldocuenta(getSaldocuenta() - cantidad);
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the cuenta
+     */
+    public String getCuenta() {
+        return cuenta;
+    }
+
+    /**
+     * @param cuenta the cuenta to set
+     */
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    /**
+     * @return the saldocuenta
+     */
+    public double getSaldocuenta() {
+        return saldocuenta;
+    }
+
+    /**
+     * @param saldocuenta the saldocuenta to set
+     */
+    public void setSaldocuenta(double saldocuenta) {
+        this.saldocuenta = saldocuenta;
+    }
+
+    /**
+     * @return the interes
+     */
+    public double getInteres() {
+        return interes;
+    }
+
+    /**
+     * @param interes the interes to set
+     */
+    public void setInteres(double interes) {
+        this.interes = interes;
     }
 }
