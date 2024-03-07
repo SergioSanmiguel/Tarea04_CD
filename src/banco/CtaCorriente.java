@@ -16,10 +16,6 @@ public class CtaCorriente {
         this.saldocuenta = saldo;
         this.interes = interes;
     }
-    public double estado()
-    {
-        return getSaldocuenta();
-    }
     public void ingresar(double cantidad) throws Exception
     {
         if (cantidad<0)
