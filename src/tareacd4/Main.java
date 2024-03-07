@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        CC miCuenta;
+        CtaCorriente miCuenta;
         double saldoActual;
 
-        miCuenta = new CC("Koldo García Ábalos","0001-2345-07-1234567890",5000,0);
+        miCuenta = new CtaCorriente("Koldo García Ábalos","0001-2345-07-1234567890",5000,0);
         saldoActual = miCuenta.estado();
         System.out.println("El saldo inicial es de "+ saldoActual +" euros");
 
