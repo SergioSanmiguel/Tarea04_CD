@@ -1,4 +1,4 @@
-package tareacd4;
+package banco;
 
 public class CtaCorriente {
     public String nombre;

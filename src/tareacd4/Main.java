@@ -1,5 +1,6 @@
 package tareacd4;
 
+import banco.CtaCorriente;
 import java.util.Scanner;
 
 public class Main {
